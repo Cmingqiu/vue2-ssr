@@ -21,7 +21,6 @@ const render = VueServerRenderer.createBundleRenderer(serverBundle, {
 
 router.get('/(.*)', async ctx => {
   try {
-    console.log('try', ctx.url)
     ctx.body = await render.renderToString({ url: ctx.url })
     /* ctx.body = await new Promise((resolve, reject) => {
     render.renderToString((err, html) => {
@@ -29,7 +28,6 @@ router.get('/(.*)', async ctx => {
     })
   }) */
   } catch (error) {
-    console.log('error: ', error)
     if (error.code === 404) ctx.body = 'page not found!'
   }
 })
